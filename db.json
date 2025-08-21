@@ -3,7 +3,7 @@
     "name": "Kayan Abdelbaki",
     "title": "Computer Science Student",
     "description": "Highly motivated Computer Science student with a strong foundation in full-stack development (React.js, NestJS) and a keen interest in machine Learning. Seeking challenging software development opportunities to apply technical skills and contribute to impactful projects.",
-    "profileImage": "/assets/images/profile.jpeg",
+    "profileImage": "/profile.jpeg",
     "welcomeMessage": "Welcome to my space"
   },
   "projects": [
