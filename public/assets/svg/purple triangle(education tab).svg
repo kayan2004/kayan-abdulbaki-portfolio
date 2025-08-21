@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 124 159">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+        filter: url(#outer-glow-1);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="-.66" y1="117.21" x2="71.51" y2="38.42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7c1cba"/>
+      <stop offset=".53" stop-color="#cd0dff"/>
+    </linearGradient>
+    <filter id="outer-glow-1" x="0" y="0" width="124" height="159" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur" stdDeviation="7"/>
+      <feFlood flood-color="aqua" flood-opacity="1"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <polygon class="cls-1" points="102.1 66.44 21.89 137.87 23.94 111.77 24.48 104.86 24.79 100.91 25.16 96.22 25.92 86.57 26.22 82.69 31.04 21.19 65.47 43.12 79.01 51.74 102.1 66.44"/>
+  </g>
+</svg>

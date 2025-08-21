@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 514 655">
+  <defs>
+    <style>
+      .cls-1 {
+        filter: url(#outer-glow-2);
+        stroke: url(#linear-gradient-2);
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke-miterlimit: 10;
+        stroke-width: 50px;
+      }
+
+      .cls-2 {
+        filter: url(#outer-glow-1);
+        stroke: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="56.24" y1="-1294.99" x2="527.72" y2="-1294.99" gradientTransform="translate(-368.86 -706.28) rotate(132.49)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7c1cba"/>
+      <stop offset=".53" stop-color="#cd0dff"/>
+    </linearGradient>
+    <filter id="outer-glow-1" x="73" y="97" width="397" height="558" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur" stdDeviation="7"/>
+      <feFlood flood-color="aqua" flood-opacity="1"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient-2" x1="-4486.54" y1="-2167.02" x2="-4131.23" y2="-2167.02" gradientTransform="translate(6669.87 1945.62) scale(1.49 .81)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#047bf0"/>
+      <stop offset=".5" stop-color="#00d6ff"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <filter id="outer-glow-2" x="0" y="0" width="514" height="400" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur-2" stdDeviation="7"/>
+      <feFlood flood-color="aqua" flood-opacity="1"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <polygon class="cls-2" points="136 430.6 418.81 178.73 411.59 270.77 409.69 295.12 408.6 309.04 407.29 325.58 404.63 359.61 403.56 373.29 386.56 590.14 265.16 512.84 217.4 482.43 136 430.6"/>
+    <rect class="cls-1" x="29.77" y="35.12" width="454.4" height="329.45" rx="66.42" ry="66.42" transform="translate(530.45 376.42) rotate(174.98)"/>
+  </g>
+</svg>

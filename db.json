@@ -1,0 +1,159 @@
+{
+  "personal": {
+    "name": "Kayan Abdelbaki",
+    "title": "Computer Science Student",
+    "description": "Highly motivated Computer Science student with a strong foundation in full-stack development (React.js, NestJS) and a keen interest in machine Learning. Seeking challenging software development opportunities to apply technical skills and contribute to impactful projects.",
+    "profileImage": "/profile.jpeg",
+    "welcomeMessage": "Welcome to my space"
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "Project One",
+      "description": "A modern web application built with React and TypeScript.",
+      "image": "/assets/project1.jpg",
+      "technologies": ["React", "TypeScript", "Tailwind CSS"],
+      "link": "https://github.com",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "Project Two", 
+      "description": "Full-stack e-commerce platform with payment integration.",
+      "image": "/assets/project2.jpg",
+      "technologies": ["Next.js", "Node.js", "PostgreSQL"],
+      "link": "https://github.com",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "title": "Project Three",
+      "description": "Mobile-first progressive web app for task management.",
+      "image": "/assets/project3.jpg", 
+      "technologies": ["React Native", "Firebase", "Redux"],
+      "link": "https://github.com",
+      "featured": true
+    },
+    {
+      "id": 4,
+      "title": "Project Four",
+      "description": "AI-powered data visualization dashboard.",
+      "image": "/assets/project4.jpg",
+      "technologies": ["Python", "TensorFlow", "D3.js"],
+      "link": "https://github.com",
+      "featured": false
+    },
+    {
+      "id": 5,
+      "title": "Project Five",
+      "description": "Real-time chat application with WebSocket support.",
+      "image": "/assets/project5.jpg",
+      "technologies": ["Socket.io", "Express", "MongoDB"],
+      "link": "https://github.com",
+      "featured": false
+    }
+  ],
+  "skills": [
+    {
+      "id": 1,
+      "category": "Programming Languages",
+      "description": "Proficient in modern programming languages for web and software development",
+      "technologies": [ "TypeScript", "Python", "C++", "Java"]
+    },
+    {
+      "id": 2,
+      "category": "Frontend Development",
+      "description": "Expert in building responsive and interactive user interfaces",
+      "technologies": ["React", "Next.js", "Tailwind CSS"]
+    },
+    {
+      "id": 3,
+      "category": "Backend Development",
+      "description": "Experience with server-side technologies and database management",
+      "technologies": ["Node.js", "NestJS", "Express", "PostgreSQL", "MongoDB"]
+    },
+    {
+      "id": 4,
+      "category": "Machine Learning",
+      "description": "Knowledge in ML algorithms and data analysis frameworks",
+      "technologies": ["PyTorch", "Scikit-learn", "Pandas", "NumPy"]
+    },
+    {
+      "id": 5,
+      "category": "Development Tools",
+      "description": "Proficient with modern development and collaboration tools",
+      "technologies": ["Git", "Docker", "Postman"]
+    }
+
+  ],
+  "experience": [
+    {
+      "id": 1,
+      "title": "Frontend Developer",
+      "company": "Freelance",
+      "duration": "june 2024 - july 2024",
+      "description": "Built responsive portfolio website for a graphic designer client to showcase her projects",
+      "skills": ["React", "TypeScript", "Tailwind CSS"],
+      "type": "work",
+      "current": false
+    },
+    {
+      "id": 2,
+      "title": "Full Stack Intern",
+      "company": "Lelabodigital",
+      "duration": " june 2025 - aug 2025", 
+      "description": "Contributed to the development of a website using Next.js",
+      "skills": ["Next.js", "TypeScript", "PostgresSQL"],
+      "type": "internship",
+      "current": false
+    },
+    {
+      "id": 3,
+      "title": "AI Developer",
+      "company": "PickyPal",
+      "duration": "july 2025 - present",
+      "description": "Developed end-to-end web solutions using modern technologies and frameworks.",
+      "skills": ["Node.js", "MongoDB", "Express"],
+      "type": "work",
+      "current": true
+    }
+  ],
+  "education": {
+    "degree": "B.S. Computer Science",
+    "institution": "University of Balamand",
+    "location": "Koura, Lebanon",
+    "duration": "Aug 2022 - May 2025",
+    "gpa": "3.6/4.0",
+    "achievements": ["Dean's Honor List"],
+    "status": "current"
+  },
+  "languages": [
+    {
+      "id": 1,
+      "language": "English",
+      "proficiency": "Fluent",
+      "level": "C2"
+    },
+    {
+      "id": 2,
+      "language": "Arabic", 
+      "proficiency": "Native",
+      "level": "Native"
+    },
+    {
+      "id": 3,
+      "language": "French",
+      "proficiency": "Intermediate",
+      "level": "B2"
+    }
+  ],
+  "contact": {
+    "email": "kayanabdepbaki@gmail.com",
+    "phone": "+961 81 932 462",
+    "location": "Beirut, Lebanon",
+    "social": {
+      "linkedin": "kayan-abdulbaki",
+      "github": "kayan2004"
+    }
+  }
+}

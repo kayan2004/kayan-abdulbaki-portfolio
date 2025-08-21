@@ -1,26 +1,139 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.primary-section-gradient{
+background: linear-gradient(90deg, #0040AE 0%, #351E4F 60%, #740091 100%);
+}
+.secondary-section-gradient {
+background: linear-gradient(90deg, #351E4F 0%, #0040AE 100%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+main {
+    height: calc(100vh - 100px); /* Full height minus header */
+    margin-top: 100px; /* Account for fixed header height */
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+main::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+button {
+    cursor: pointer;
 }
+
+.section {
+    height: calc(100vh - 100px); /* Match main container height */
+    scroll-snap-align: start;
+    overflow: hidden; /* Prevent internal scrolling */
+   
+}
+
+.section-multi-viewport {
+    min-height: 100vh;
+    scroll-snap-align: start;
+}
+
+#glowing-bar {
+    position: relative;
+    background: linear-gradient(90deg, #008CFF 14.62%, #00E1FF 54.03%, #FFFFFF 84.09%);
+    box-shadow: 
+        0px 0px 0.79px 0px rgba(0, 204, 255, 1),
+        0px 0px 1.57px 0px rgba(0, 204, 255, 1),
+        0px 0px 5.5px 0px rgba(0, 204, 255, 1),
+        0px 0px 11px 0px rgba(0, 204, 255, 1),
+        0px 0px 18.85px 0px rgba(0, 204, 255, 1),
+        0px 0px 33px 0px rgba(0, 204, 255, 1);
+}
+
+.gradient-button{
+    background: linear-gradient(89.62deg, #FB00FF 0.31%, #BF00FF 99.69%);
+cursor : pointer
+}
+.nav-item {
+    position: relative;
+cursor:pointer
+}
+
+.nav-item:hover::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    color: rgba(0, 106, 128, 0.8);
+    text-shadow: 
+        0px 0px 1.45px rgba(0, 106, 128, 1),
+        0px 0px 2.9px rgba(0, 106, 128, 1),
+        0px 0px 10.16px rgba(0, 106, 128, 1),
+        0px 0px 20.32px rgba(0, 106, 128, 1),
+        0px 0px 34.83px rgba(0, 106, 128, 1),
+        0px 0px 60.95px rgba(0, 106, 128, 1);
+}
+
+
+
+
+.glow-text{
+    position: relative !important;
+    display: inline-block !important;
+    background: linear-gradient(90deg, #008CFF 14.62%, #00E1FF 54.03%, #FFFFFF 84.09%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.glow-text::before {
+    content: attr(data-text) !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: -1 !important;
+    color: transparent !important;
+    pointer-events: none !important;
+    text-shadow: 
+        0px 0px 8px rgba(0, 106, 128, 0.8),
+        0px 0px 15px rgba(0, 106, 128, 0.6),
+        0px 0px 25px rgba(0, 106, 128, 0.4),
+        0px 0px 40px rgba(0, 106, 128, 0.2) !important;
+}
+
+.custom-list {
+    list-style: none;
+}
+
+.bullet-point {
+    transition: all 0.3s ease;
+    background-image: url('/assets/svg/bullet-point-no-glow.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.custom-list-education li:hover .bullet-point,
+.custom-list-languages li:hover .bullet-point {
+    transform: rotate(5.02deg);
+    background-image: url('/assets/svg/glowy scare (experience tab).svg');
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+    }
+    10%, 90% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+.animate-fade-in-out {
+    animation: fadeInOut 2s ease-in-out forwards;
+}
+

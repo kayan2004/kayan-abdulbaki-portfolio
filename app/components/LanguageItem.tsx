@@ -1,0 +1,26 @@
+import React from "react";
+import { Amiko } from "next/font/google";
+
+const amiko = Amiko({
+  subsets: ["latin"],
+  weight: "700",
+});
+
+interface LanguageItemProps {
+  language: string;
+  proficiency: string;
+}
+
+const LanguageItem: React.FC<LanguageItemProps> = ({ language, proficiency }) => {
+  return (
+    <li className="flex items-center">
+      <div className="w-20 h-20 mr-4 bullet-point"></div>
+      <div className="flex flex-col">
+        <strong className={`${amiko.className} text-3xl`}>{language}</strong>
+        <span>{proficiency}</span>
+      </div>
+    </li>
+  );
+};
+
+export default LanguageItem;
