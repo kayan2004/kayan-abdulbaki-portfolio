@@ -5,8 +5,10 @@ import { SiGmail } from "react-icons/si";
 import Button from "./common/button";
 import { useState } from "react";
 import data from "@/db.json";
+
 const Header = () => {
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
+  const contacts = data.contact;
 
   const scrollToContact = () => {
     const contactSection = document.getElementById("contact");
@@ -25,43 +27,70 @@ const Header = () => {
     }
   };
 
-  const contacts = data.contact;
+  const socialLinks = [
+    {
+      icon: FaSquarePhone,
+      action: copyPhoneNumber,
+      isButton: true,
+      showTooltip: true,
+    },
+    {
+      icon: FaLinkedin,
+      href: `https://www.linkedin.com/in/${contacts.social.linkedin}`,
+      isButton: false,
+      showTooltip: false,
+    },
+    {
+      icon: FaGithub,
+      href: `https://github.com/${contacts.social.github}`,
+      isButton: false,
+      showTooltip: false,
+    },
+    {
+      icon: SiGmail,
+      href: `mailto:${contacts.email}`,
+      isButton: false,
+      showTooltip: false,
+    },
+  ];
 
   return (
     <>
-      <header className="flex justify-between px-6">
+      <header className="flex justify-between max-h-10">
         <Navigation />
-        <div className="flex justify-center gap-20">
-          <div className="flex gap-8 mt-4">
-            <button onClick={copyPhoneNumber} className="w-8 h-8 relative">
-              <FaSquarePhone className="w-full h-full text-[#00E7FF] hover:text-white transition-colors" />
-              {showCopiedMessage && (
-                <div className="absolute top-10 left-1/2 transform -translate-x-1/2 z-50 bg-black/80 text-white px-3 py-1 rounded text-xs whitespace-nowrap animate-fade-in-out">
-                  Phone number copied!
-                </div>
-              )}
-            </button>
-            <a
-              href={`https://www.linkedin.com/in/${contacts.social.linkedin}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8"
-            >
-              <FaLinkedin className="w-full h-full text-[#00E7FF] hover:text-white transition-colors" />
-            </a>
-            <a
-              href={`https://github.com/${contacts.social.github}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8"
-            >
-              <FaGithub className="w-full h-full text-[#00E7FF] hover:text-white transition-colors" />
-            </a>
-            <a href={`mailto:${contacts.email}`} className="w-8 h-8">
-              <SiGmail className="w-full h-full text-[#00E7FF] hover:text-white transition-colors" />
-            </a>
+        <div className="flex items-center  gap-6">
+          <div className="hidden lg:flex justify-center items-center gap-8">
+            {socialLinks.map((link, index) =>
+              link.isButton ? (
+                <button
+                  key={index}
+                  onClick={link.action}
+                  className="w-8 h-8 relative"
+                >
+                  <link.icon className="w-full h-full text-[#00E7FF] hover:text-white transition-colors" />
+                  {link.showTooltip && showCopiedMessage && (
+                    <div className="absolute top-10 left-1/2 transform -translate-x-1/2 z-50 bg-black/80 text-white px-3 py-1 rounded text-xs whitespace-nowrap animate-fade-in-out">
+                      Phone number copied!
+                    </div>
+                  )}
+                </button>
+              ) : (
+                <a
+                  key={index}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8"
+                >
+                  <link.icon className="w-full h-full text-[#00E7FF] hover:text-white transition-colors" />
+                </a>
+              )
+            )}
           </div>
-          <Button styles="px-6 py-4" onClick={scrollToContact}>
+          <Button
+            styles=" px-4 py-2 text-sm max-h-12 md:text-sm font-extrabold md:px-6 md:py-4"
+            onClick={scrollToContact}
+          >
             Reach out
           </Button>
         </div>

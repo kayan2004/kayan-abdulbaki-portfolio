@@ -1,14 +1,14 @@
 import React from "react";
 type Props = {
-  children: string;
-  styles: string;
+  children: React.ReactNode;
+  styles?: string;
   onClick?: () => void;
 };
 
 const Button = ({ children, styles, onClick }: Props) => {
   return (
     <button
-      className={`text-white gradient-button uppercase rounded-md ${styles}`}
+      className={`text-white gradient-button uppercase ${styles}`}
       onClick={onClick}
     >
       {children}

@@ -11,55 +11,58 @@ const amiko = Amiko({
 });
 
 const EducationAndLanguageSection = () => {
-  const educationData = data.education
-  const languagesData = data.languages
+  const educationData = data.education;
+  const languagesData = data.languages;
   return (
-    <section id="education" className="section grid grid-cols-2 gap-8">
-      <article className=" flex flex-col items-center  text-white">
-        <div className="flex items-center justify-center mb-4">
+    <section
+      id="education"
+      className="section flex flex-col gap-10 md:flex-row md:justify-around "
+    >
+      <article className=" flex flex-col md:items-center  text-white">
+        <div className="flex md:items-center md:justify-center md:mb-4">
           <Image
-            src="/assets/svg/purple triangle(education tab).svg"
+            src="/svg/purple triangle(education tab).svg"
             alt=""
             width={100}
             height={100}
-            className="mr-4"
+            className=" w-10 md:w-[80px] aspect-square"
           />
-          <H2 styles={`text-6xl`}>{`Education`}</H2>
+          <H2 styles={`text-3xl md:text-5xl`}>{`Education`}</H2>
         </div>
-        <div className="flex flex-col text-white text-center mt-8">
+        <div className="flex flex-col text-sm md:text-lg text-white px-8 md:text-center mt-4 md:mt-8">
           <span>{`${educationData.institution}, ${educationData.location}`}</span>
-          <strong className={`${amiko.className} text-3xl`}>
+          <strong className={`${amiko.className} text-xl`}>
             {`${educationData.degree}`}
           </strong>
-          <span className="text-sm italic">{`${educationData.duration}`}</span>
+          <span className="text-xs md:text-sm italic">{`${educationData.duration}`}</span>
         </div>
-        <ul className="grid text-white mt-8 space-y-4 custom-list custom-list-education">
+        <ul className="grid text-white mt-8 ml-7 md:ml-0 space-y-4 custom-list custom-list-education">
           <li className="flex items-center">
-            <div className="w-20 h-20 mr-3 bullet-point"></div>
-            <strong className={`${amiko.className} text-3xl`}>
+            <div className=" w-10 md:w-20 aspect-square mr-1 md:mr-3 bullet-point"></div>
+            <strong className={`${amiko.className} text-lg md:text-3xl`}>
               {`GPA: ${educationData.gpa}`}
             </strong>
           </li>
           <li className="flex items-center">
-            <div className="w-20 h-20 mr-3 bullet-point"></div>
-            <strong className={`${amiko.className} text-3xl`}>
+            <div className=" w-10 md:w-20 aspect-square mr-1 md:mr-3 bullet-point"></div>
+            <strong className={`${amiko.className} text-lg md:text-3xl`}>
               {` ${educationData.achievements[0]}`}
             </strong>
           </li>
         </ul>
       </article>
-      <article className=" text-white ">
-        <div className="flex items-center justify-center mb-4">
+      <article className=" text-white">
+        <div className="flex items-center md:justify-center mb-4">
           <Image
-            src="/assets/svg/purple triangle(education tab).svg"
+            src="/svg/purple triangle(education tab).svg"
             alt=""
             width={100}
             height={100}
-            className="mr-4"
+            className=" w-10 md:w-[80px] aspect-square"
           />
-          <H2 styles={`text-6xl`}>{`Languages`}</H2>
+          <H2 styles={`text-3xl md:text-5xl`}>{`Languages`}</H2>
         </div>
-        <ul className="grid gap-y-3 mt-8 ml-[20%] custom-list custom-list-languages">
+        <ul className="grid gap-y-3 mt-8 custom-list custom-list-languages">
           {languagesData.map((language) => (
             <LanguageItem
               key={language.id}

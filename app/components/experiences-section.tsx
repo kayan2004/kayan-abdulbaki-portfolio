@@ -44,7 +44,7 @@ const ExperiencesSection = () => {
     <section id="experience" className="relative">
       <div className="relative">
         <div
-          className="absolute left-1/2 transform -translate-x-1/2 z-10 pointer-events-none"
+          className="hidden md:block absolute left-1/2 transform -translate-x-1/2 z-10 pointer-events-none"
           style={{
             top: "6%", // Start after title area (about 20% down from top)
             bottom: "0", // End at bottom
@@ -63,19 +63,19 @@ const ExperiencesSection = () => {
           >
             <div className="flex flex-col items-center justify-start h-screen px-8 
               ">
-              {index === 0 && <H2 styles="text-6xl mb-16 ">Experience</H2>}
+              {index === 0 && <H2 styles="text-3xl md:text-6xl mb-16 ">Experience</H2>}
 
               <div
-                className={`grid grid-cols-2 gap-16 max-w-6xl w-full ${
+                className={`grid grid-cols-1 md:grid-cols-2 gap-16 max-w-6xl w-full ${
                   exp.side === "right"
-                    ? "grid-cols-[1fr_1fr]"
-                    : "grid-cols-[1fr_1fr]"
+                    ? "md:grid-cols-[1fr_1fr]"
+                    : "md:grid-cols-[1fr_1fr]"
                 }`}
               >
                 {exp.side === "left" ? (
                   <>
                     {/* Content on left side */}
-                    <div className="text-right pr-16">
+                    <div className="text-right md:pr-16">
                       <h3 className="text-white text-3xl font-bold mb-2">
                         {exp.title}
                       </h3>
@@ -105,7 +105,7 @@ const ExperiencesSection = () => {
                     {/* Empty left side */}
                     <div className="pr-16"></div>
                     {/* Content on right side */}
-                    <div className="text-left pl-16">
+                    <div className="text-left md:pl-16">
                       <h3 className="text-white text-3xl font-bold mb-2">
                         {exp.title}
                       </h3>

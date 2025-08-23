@@ -1,21 +1,33 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Amiko, Kantumruy_Pro } from "next/font/google";
+import { Amiko } from "next/font/google";
 
 const amiko = Amiko({
   subsets: ["latin"],
   weight: "400",
 });
 
-const kantumruyPro = Kantumruy_Pro({
-  subsets: ["latin"],
-  weight: "600",
-});
 export const metadata: Metadata = {
-  icons: "s",
   title: "Kayan Abdelbaki Portfolio",
   description:
     "Portfolio Website for Kayan Abdelbaki to showcase his projects and work experiences.",
+  icons: {
+    icon: [
+      {
+        url: "/favicon_io/favicon-16x16.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
+      {
+        url: "/favicon_io/favicon-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+      { url: "/favicon_io/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/favicon_io/favicon.ico",
+    apple: "/favicon_io/favicon-32x32.png",
+  },
 };
 
 export default function RootLayout({
@@ -25,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${amiko.className}`}>
-      <body className={``}>{children}</body>
+      <body className={`bg-black`}>{children}</body>
     </html>
   );
 }

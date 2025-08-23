@@ -1,139 +1,213 @@
 @import "tailwindcss";
 
-.primary-section-gradient{
-background: linear-gradient(90deg, #0040AE 0%, #351E4F 60%, #740091 100%);
+html,
+body {
+  background-color: #000000;
+}
+
+.primary-section-gradient {
+  background: linear-gradient(90deg, #0040ae 0%, #351e4f 60%, #740091 100%);
 }
 .secondary-section-gradient {
-background: linear-gradient(90deg, #351E4F 0%, #0040AE 100%);
+  background: linear-gradient(90deg, #351e4f 0%, #0040ae 100%);
 }
 
 main {
-    height: calc(100vh - 100px); /* Full height minus header */
-    margin-top: 100px; /* Account for fixed header height */
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+  height: calc(100vh - 100px); /* Full height minus header */
+  margin-top: 100px; /* Account for fixed header height */
+
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 main::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+  display: none; /* Chrome, Safari, Opera */
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .section {
-    height: calc(100vh - 100px); /* Match main container height */
-    scroll-snap-align: start;
-    overflow: hidden; /* Prevent internal scrolling */
-   
+  height: calc(100vh - 100px); /* Match main container height */
+  scroll-snap-align: start;
+  overflow-y: auto; /* Allow vertical scrolling */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.section::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .section-multi-viewport {
-    min-height: 100vh;
-    scroll-snap-align: start;
+  min-height: 100vh;
+  scroll-snap-align: start;
 }
 
 #glowing-bar {
-    position: relative;
-    background: linear-gradient(90deg, #008CFF 14.62%, #00E1FF 54.03%, #FFFFFF 84.09%);
-    box-shadow: 
-        0px 0px 0.79px 0px rgba(0, 204, 255, 1),
-        0px 0px 1.57px 0px rgba(0, 204, 255, 1),
-        0px 0px 5.5px 0px rgba(0, 204, 255, 1),
-        0px 0px 11px 0px rgba(0, 204, 255, 1),
-        0px 0px 18.85px 0px rgba(0, 204, 255, 1),
-        0px 0px 33px 0px rgba(0, 204, 255, 1);
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    #008cff 14.62%,
+    #00e1ff 54.03%,
+    #ffffff 84.09%
+  );
+  box-shadow: 0px 0px 0.79px 0px rgba(0, 204, 255, 0.6),
+    0px 0px 1.57px 0px rgba(0, 204, 255, 0.5),
+    0px 0px 5.5px 0px rgba(0, 204, 255, 0.4),
+    0px 0px 11px 0px rgba(0, 204, 255, 0.3),
+    0px 0px 18.85px 0px rgba(0, 204, 255, 0.2),
+    0px 0px 33px 0px rgba(0, 204, 255, 0.1);
+}
+.glowing-border {
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    #008cff 14.62%,
+    #00e1ff 54.03%,
+    #ffffff 84.09%
+  );
+  padding: 8px;
+  box-shadow: 0px 0px 0.8px 0px rgba(0, 204, 255, 0.7),
+    0px 0px 1.5px 0px rgba(0, 204, 255, 0.6),
+    0px 0px 4px 0px rgba(0, 204, 255, 0.5),
+    0px 0px 8px 0px rgba(0, 204, 255, 0.4),
+    0px 0px 14px 0px rgba(0, 204, 255, 0.3),
+    0px 0px 22px 0px rgba(0, 204, 255, 0.2);
 }
 
-.gradient-button{
-    background: linear-gradient(89.62deg, #FB00FF 0.31%, #BF00FF 99.69%);
-cursor : pointer
+.glowing-border > * {
+  border-radius: calc(1.5rem - 8px);
+}
+
+.glowing-border-menu {
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    #008cff 14.62%,
+    #00e1ff 54.03%,
+    #ffffff 84.09%
+  );
+  padding: 2px;
+  box-shadow: 0px 0px 0.8px 0px rgba(0, 204, 255, 0.7),
+    0px 0px 1.5px 0px rgba(0, 204, 255, 0.6),
+    0px 0px 4px 0px rgba(0, 204, 255, 0.5),
+    0px 0px 8px 0px rgba(0, 204, 255, 0.4),
+    0px 0px 14px 0px rgba(0, 204, 255, 0.3),
+    0px 0px 22px 0px rgba(0, 204, 255, 0.2);
+}
+
+.gradient-button {
+  background: linear-gradient(89.62deg, #fb00ff 0.31%, #bf00ff 99.69%);
+  cursor: pointer;
+}
+
+.projects-scroll {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.projects-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 .nav-item {
-    position: relative;
-cursor:pointer
+  position: relative;
+  cursor: pointer;
 }
 
 .nav-item:hover::before {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    color: rgba(0, 106, 128, 0.8);
-    text-shadow: 
-        0px 0px 1.45px rgba(0, 106, 128, 1),
-        0px 0px 2.9px rgba(0, 106, 128, 1),
-        0px 0px 10.16px rgba(0, 106, 128, 1),
-        0px 0px 20.32px rgba(0, 106, 128, 1),
-        0px 0px 34.83px rgba(0, 106, 128, 1),
-        0px 0px 60.95px rgba(0, 106, 128, 1);
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  color: rgba(0, 106, 128, 0.8);
+  text-shadow: 0px 0px 1.45px rgba(0, 106, 128, 1),
+    0px 0px 2.9px rgba(0, 106, 128, 1), 0px 0px 10.16px rgba(0, 106, 128, 1),
+    0px 0px 20.32px rgba(0, 106, 128, 1), 0px 0px 34.83px rgba(0, 106, 128, 1),
+    0px 0px 60.95px rgba(0, 106, 128, 1);
 }
 
+.hamburger-menu:hover {
+  filter: drop-shadow(0px 0px 8px rgba(0, 231, 255, 0.8))
+    drop-shadow(0px 0px 15px rgba(0, 231, 255, 0.6))
+    drop-shadow(0px 0px 25px rgba(0, 231, 255, 0.4))
+    drop-shadow(0px 0px 40px rgba(0, 231, 255, 0.2));
+  transition: filter 0.3s ease;
+}
 
-
-
-.glow-text{
-    position: relative !important;
-    display: inline-block !important;
-    background: linear-gradient(90deg, #008CFF 14.62%, #00E1FF 54.03%, #FFFFFF 84.09%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.glow-text {
+  position: relative !important;
+  display: inline-block !important;
+  background: linear-gradient(
+    90deg,
+    #008cff 14.62%,
+    #00e1ff 54.03%,
+    #ffffff 84.09%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .glow-text::before {
-    content: attr(data-text) !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    z-index: -1 !important;
-    color: transparent !important;
-    pointer-events: none !important;
-    text-shadow: 
-        0px 0px 8px rgba(0, 106, 128, 0.8),
-        0px 0px 15px rgba(0, 106, 128, 0.6),
-        0px 0px 25px rgba(0, 106, 128, 0.4),
-        0px 0px 40px rgba(0, 106, 128, 0.2) !important;
+  content: attr(data-text) !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: -1 !important;
+  color: transparent !important;
+  pointer-events: none !important;
+  text-shadow: 0px 0px 8px rgba(0, 106, 128, 0.8),
+    0px 0px 15px rgba(0, 106, 128, 0.6), 0px 0px 25px rgba(0, 106, 128, 0.4),
+    0px 0px 40px rgba(0, 106, 128, 0.2) !important;
 }
 
 .custom-list {
-    list-style: none;
+  list-style: none;
 }
 
 .bullet-point {
-    transition: all 0.3s ease;
-    background-image: url('/assets/svg/bullet-point-no-glow.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+  transition: all 0.3s ease;
+  background-image: url("/svg/bullet-point-no-glow.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
+
+/* @media (max-width: 767px) {
+  .bullet-point {
+    width: 25px !important;
+    height: 25px !important;
+  }
+} */
 
 .custom-list-education li:hover .bullet-point,
 .custom-list-languages li:hover .bullet-point {
-    transform: rotate(5.02deg);
-    background-image: url('/assets/svg/glowy scare (experience tab).svg');
+  transform: rotate(5.02deg);
+  background-image: url("/svg/glowy scare (experience tab).svg");
 }
 
 @keyframes fadeInOut {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-10px);
-    }
-    10%, 90% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-10px);
-    }
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  10%,
+  90% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
 }
 
 .animate-fade-in-out {
-    animation: fadeInOut 2s ease-in-out forwards;
+  animation: fadeInOut 2s ease-in-out forwards;
 }
 

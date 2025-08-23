@@ -5,7 +5,7 @@ type Props = {
 };
 
 const H1 = ({children}: Props) => {
-  return <h1 className="text-4xl text-white">{children}</h1>;
+  return <h1 className=" text-xl md:text-4xl text-white">{children}</h1>;
 };
 
 export default H1;

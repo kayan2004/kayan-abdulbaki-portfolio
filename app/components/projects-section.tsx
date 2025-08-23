@@ -1,7 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useRef } from "react";
+import Image from "next/image";
+import {
+  ResponsiveContainer,
+  StackedCarousel,
+} from "react-stacked-center-carousel";
+import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+
 import H2 from "./common/H2";
+import Button from "./common/button";
 import dbData from "../../db.json";
 
 interface Project {
@@ -10,186 +18,221 @@ interface Project {
   description: string;
   image: string;
   technologies: string[];
-  link?: string;
+  link: string;
+  featured: boolean;
+}
+
+interface ProjectCardProps {
+  data: Project[];
+  dataIndex: number;
+}
+
+interface CarouselRef {
+  current: StackedCarousel | undefined;
 }
 
 const ProjectsSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const projects = dbData.projects;
-
-  const scrollLeft = () => {
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : projects.length - 1));
-  };
-
-  const scrollRight = () => {
-    setCurrentIndex((prev) => (prev < projects.length - 1 ? prev + 1 : 0));
-  };
-
-  const getVisibleProjects = () => {
-    const visible = [];
-    for (let i = -1; i <= 1; i++) {
-      const index =
-        (currentIndex + i + projects.length) % projects.length;
-      visible.push({ ...projects[index], position: i });
+  const carouselRef = useRef<StackedCarousel | null>(null);
+  const scrollThrottleRef = useRef<NodeJS.Timeout | null>(null);
+  const isScrollingRef = useRef(false);
+  
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    
+    // If already scrolling, ignore additional scroll events
+    if (isScrollingRef.current) return;
+    
+    // Get horizontal or vertical scroll direction
+    const deltaX = e.deltaX;
+    const deltaY = e.deltaY;
+    const primaryDelta = Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
+    
+    if (Math.abs(primaryDelta) > 10) {
+      isScrollingRef.current = true;
+      
+      if (primaryDelta > 0) {
+        // Scroll right/down - go to next
+        carouselRef.current?.goNext();
+      } else {
+        // Scroll left/up - go to previous  
+        carouselRef.current?.goBack();
+      }
+      
+      // Clear any existing timeout
+      if (scrollThrottleRef.current) {
+        clearTimeout(scrollThrottleRef.current);
+      }
+      
+      // Reset scrolling flag after animation completes
+      scrollThrottleRef.current = setTimeout(() => {
+        isScrollingRef.current = false;
+      }, 600); // Slightly longer than transition time (500ms)
     }
-    return visible;
+  };
+
+  const ProjectCard = (props: ProjectCardProps) => {
+    const project = props.data[props.dataIndex];
+    
+    const technologies = Array.isArray(project?.technologies)
+      ? project.technologies
+      : [];
+
+    return (
+      <div className="rounded-3xl overflow-hidden cursor-pointer glowing-border w-80 h-[400px]">
+        <div className="h-full w-full primary-section-gradient rounded-3xl overflow-hidden flex flex-col">
+          {/* Image container */}
+          <div className="relative h-[60%] w-full overflow-hidden">
+            {project?.image ? (
+              <Image
+                src={project.image}
+                alt={project?.title || 'Project'}
+                fill
+                className="object-cover"
+              />
+            ) : (
+              <div className="w-full h-full bg-gray-600 flex items-center justify-center">
+                <span className="text-white">No Image</span>
+              </div>
+            )}
+          </div>
+
+          {/* Content */}
+          <div className="p-4 h-[40%] flex flex-col justify-between">
+            <div>
+              <h3 className="font-semibold mb-2 text-lg text-white">
+                {project?.title || "Untitled"}
+              </h3>
+              <p className="text-gray-300 mb-3 text-sm line-clamp-2">
+                {project?.description || "No description"}
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-1">
+              {technologies.slice(0, 3).map((tech: string, index: number) => (
+                <span
+                  key={index}
+                  className="bg-white/10 rounded-full px-2 py-1 text-xs text-white"
+                >
+                  {tech}
+                </span>
+              ))}
+              {technologies.length > 3 && (
+                <span className="bg-white/10 rounded-full px-2 py-1 text-xs text-white">
+                  +{technologies.length - 3}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
     <section
       id="projects"
-      className="section flex flex-col items-center justify-start gap-4"
+      className="section flex flex-col items-center justify-start gap-8"
     >
-      <H2 styles={`text-6xl`}>{`Projects`}</H2>
+      <H2 styles="text-3xl md:text-6xl">Projects</H2>
 
-      <div className="relative w-full max-w-6xl overflow-hidden">
+      {/* Desktop Carousel */}
+      <div className="hidden md:block relative w-full max-w-6xl">
         <div className="flex items-center justify-center gap-4 px-4">
-          <button
-            onClick={scrollLeft}
-            className="z-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-3 hover:bg-white/20 transition-colors"
+          {/* Left Button */}
+          <Button
+            onClick={() => carouselRef.current?.goBack()}
+            styles="rounded-full w-12 aspect-square flex justify-center items-center"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
+            <IoChevronBack className="w-6 h-6" />
+          </Button>
 
-          <div className="flex items-center gap-6 flex-1 justify-center mt-10">
-            {getVisibleProjects().map((project, idx) => {
-              const isCenter = project.position === 0;
-              const isLeft = project.position === -1;
-              const isRight = project.position === 1;
+          {/* Carousel */}
+          <div 
+            className="flex-1" 
+            style={{ height: "400px" }}
+            onWheel={handleWheel}
+          >
+            <ResponsiveContainer
+              carouselRef={carouselRef as CarouselRef}
+              render={(width) => (
+                <StackedCarousel
+                  ref={carouselRef}
+                  data={projects}
+                  slideComponent={ProjectCard}
+                  carouselWidth={width}
+                  slideWidth={320}
+                  height={400}
+                  maxVisibleSlide={3}
+                  disableSwipe={false}
+                  customScales={[1, 0.85, 0.75]}
+                  transitionTime={500}
+                />
+              )}
+            />
+          </div>
 
-              return (
-                <div
-                  key={`${project.id}-${currentIndex}`}
-                  className={`
-                     rounded-lg overflow-hidden cursor-pointer
-                    ${
-                      isCenter
-                        ? "w-80 h-100  z-20"
-                        : "w-60 h-76 opacity-70"
-                    }
-                    ${isLeft ? "-translate-x-4" : ""}
-                    ${isRight ? "translate-x-4" : ""}
-                  `}
-                  // style={{
-                  //   border: "1px solid rgba(255, 255, 255, 0.2)",
-                  //   boxShadow: isCenter
-                  //     ? `
-                  //     0px 0px 0.79px 0px rgba(0, 204, 255, 1),
-                  //     0px 0px 1.57px 0px rgba(0, 204, 255, 1),
-                  //     0px 0px 5.5px 0px rgba(0, 204, 255, 1),
-                  //     0px 0px 11px 0px rgba(0, 204, 255, 1),
-                  //     0px 0px 18.85px 0px rgba(0, 204, 255, 1),
-                  //     0px 0px 33px 0px rgba(0, 204, 255, 1)
-                  //   `
-                  //     : `
-                  //     0px 0px 0.5px 0px rgba(0, 204, 255, 0.6),
-                  //     0px 0px 1px 0px rgba(0, 204, 255, 0.6),
-                  //     0px 0px 3px 0px rgba(0, 204, 255, 0.6)
-                  //   `,
-                  // }}
-                  onClick={() => {
-                    if (!isCenter) {
-                      setCurrentIndex(
-                        (currentIndex +
-                          project.position +
-                          projects.length) %
-                          projects.length
-                      );
-                    }
-                  }}
-                >
-                  <div className="h-2/3 bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center">
-                    <div className="text-4xl opacity-60">🖼️</div>
+          {/* Right Button */}
+          <Button
+            onClick={() => carouselRef.current?.goNext()}
+            styles="rounded-full w-12 aspect-square flex justify-center items-center"
+          >
+            <IoChevronForward className="w-6 h-6" />
+          </Button>
+        </div>
+      </div>
+
+      {/* Mobile Horizontal Scroll Carousel */}
+      <div className="md:hidden w-full px-4">
+        <div className="flex gap-4 overflow-x-auto projects-scroll pb-4" style={{ scrollSnapType: 'x mandatory' }}>
+          {projects.map((project) => (
+            <div key={project.id} className="flex-shrink-0 w-[280px] h-[350px]" style={{ scrollSnapAlign: 'start' }}>
+              <div className="rounded-3xl overflow-hidden cursor-pointer glowing-border w-full h-full">
+                <div className="h-full w-full primary-section-gradient rounded-3xl overflow-hidden flex flex-col">
+                  {/* Image container */}
+                  <div className="relative h-[60%] w-full overflow-hidden">
+                    {project?.image ? (
+                      <Image
+                        src={project.image}
+                        alt={project?.title || 'Project'}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gray-600 flex items-center justify-center">
+                        <span className="text-white">No Image</span>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="p-4 h-1/3 flex flex-col justify-between">
+                  {/* Content */}
+                  <div className="p-4 h-[40%] flex flex-col justify-between">
                     <div>
-                      <h3
-                        className={`font-semibold mb-2 ${
-                          isCenter ? "text-lg" : "text-base"
-                        }`}
-                      >
-                        {project.title}
+                      <h3 className="font-semibold mb-2 text-lg text-white">
+                        {project?.title || "Untitled"}
                       </h3>
-                      <p
-                        className={`text-gray-300 mb-3 ${
-                          isCenter ? "text-sm" : "text-xs"
-                        } line-clamp-2`}
-                      >
-                        {project.description}
+                      <p className="text-gray-300 mb-3 text-sm line-clamp-2">
+                        {project?.description || "No description"}
                       </p>
                     </div>
-
                     <div className="flex flex-wrap gap-1">
-                      {project.technologies
-                        .slice(0, isCenter ? 3 : 2)
-                        .map((tech) => (
-                          <span
-                            key={tech}
-                            className={`bg-white/10 rounded-full px-2 py-1 ${
-                              isCenter ? "text-xs" : "text-[10px]"
-                            }`}
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      {project.technologies.length > (isCenter ? 3 : 2) && (
+                      {Array.isArray(project?.technologies) && project.technologies.slice(0, 3).map((tech: string, techIndex: number) => (
                         <span
-                          className={`bg-white/10 rounded-full px-2 py-1 ${
-                            isCenter ? "text-xs" : "text-[10px]"
-                          }`}
+                          key={techIndex}
+                          className="bg-white/10 rounded-full px-2 py-1 text-xs text-white"
                         >
-                          +{project.technologies.length - (isCenter ? 3 : 2)}
+                          {tech}
+                        </span>
+                      ))}
+                      {Array.isArray(project?.technologies) && project.technologies.length > 3 && (
+                        <span className="bg-white/10 rounded-full px-2 py-1 text-xs text-white">
+                          +{project.technologies.length - 3}
                         </span>
                       )}
                     </div>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-
-          <button
-            onClick={scrollRight}
-            className="z-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-3 hover:bg-white/20 transition-colors"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div className="flex justify-center mt-6 gap-2">
-          {projects.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                index === currentIndex ? "bg-white" : "bg-white/30"
-              }`}
-            />
+              </div>
+            </div>
           ))}
         </div>
       </div>

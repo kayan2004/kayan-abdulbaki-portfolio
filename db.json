@@ -9,49 +9,32 @@
   "projects": [
     {
       "id": 1,
-      "title": "Project One",
-      "description": "A modern web application built with React and TypeScript.",
-      "image": "/assets/project1.jpg",
-      "technologies": ["React", "TypeScript", "Tailwind CSS"],
+      "title": "Brain tumor classifier",
+      "description": "Trained an AI model that detects different types of brain tumors",
+      "image": "/assets/images/project1.jpg",
+      "technologies": ["PyTorch", "Python", "Numpy", "Pandas"],
       "link": "https://github.com",
       "featured": true
     },
     {
       "id": 2,
-      "title": "Project Two", 
+      "title": "Gamified fitness app", 
       "description": "Full-stack e-commerce platform with payment integration.",
-      "image": "/assets/project2.jpg",
+      "image": "/assets/images/project2.jpeg",
       "technologies": ["Next.js", "Node.js", "PostgreSQL"],
       "link": "https://github.com",
       "featured": true
     },
     {
       "id": 3,
-      "title": "Project Three",
+      "title": "Super mario game",
       "description": "Mobile-first progressive web app for task management.",
-      "image": "/assets/project3.jpg", 
+      "image": "/assets/images/project2.jpeg", 
       "technologies": ["React Native", "Firebase", "Redux"],
       "link": "https://github.com",
       "featured": true
-    },
-    {
-      "id": 4,
-      "title": "Project Four",
-      "description": "AI-powered data visualization dashboard.",
-      "image": "/assets/project4.jpg",
-      "technologies": ["Python", "TensorFlow", "D3.js"],
-      "link": "https://github.com",
-      "featured": false
-    },
-    {
-      "id": 5,
-      "title": "Project Five",
-      "description": "Real-time chat application with WebSocket support.",
-      "image": "/assets/project5.jpg",
-      "technologies": ["Socket.io", "Express", "MongoDB"],
-      "link": "https://github.com",
-      "featured": false
     }
+
   ],
   "skills": [
     {

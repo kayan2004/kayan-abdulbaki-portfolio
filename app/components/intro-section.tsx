@@ -8,7 +8,7 @@ const First = () => {
   return (
     <section className="section flex flex-col items-center text-center py-4 gap-8">
       <H1>{`Hello, I'm ${personalData.name}`}</H1>
-      <H2 styles={`text-8xl`}>{personalData.welcomeMessage}</H2>
+      <H2 styles={`text-3xl md:text-8xl`}>{personalData.welcomeMessage}</H2>
       <Image
         className="w-60 h-60 object-cover  rounded-full"
         src={personalData.profileImage}
